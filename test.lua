@@ -148,6 +148,44 @@ local function checklisting(uid, gems, item, version, shiny, amount, username, p
         processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
     elseif item == "Crystal Key" and price <= 20000 then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Crystal Key: Upper Half" and price <= 4000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Spinny Wheel Ticket" and price <= 3000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Royalty Charm" and price <= 300000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Charm Stone" and price <= 20000 then
+	local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)	
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Glittering Charm" and price <= 100000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "X-large Christmas Present" and price <= 12000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Fortune" and price <= 100000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Huge Hunter" and price <= 200000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Shiny Hunter" and price <= 100000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Lucky Block" and price <= 100000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "The Cocktail Potion" and price <= 20000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Clan Voucher" and price <= 100000 then
+        local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Large Christmas Present" and price <= 5000 then
 	processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
     elseif string.find(item, "Exclusive") and price <= 50000 then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
@@ -229,7 +267,7 @@ end
 
 Players.PlayerRemoving:Connect(function(player)
     PlayerInServer = #getPlayers
-    if PlayerInServer < 22 then
+    if PlayerInServer < 25 then
         jumpToServer()
     end
 end) 
