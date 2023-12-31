@@ -76,7 +76,7 @@ local function processListingInfo(uid, gems, item, version, shiny, amount, bough
         ['embeds'] = {
             {
 		["author"] = {
-			["name"] = "allahشسيص",
+			["name"] = "Erdogan",
 			["icon_url"] = "https://cdn.discordapp.com/attachments/828296500513341452/1190667547079610368/indir.jpg?ex=65a2a290&is=65902d90&hm=b8b7df3148c306cd3b117f70d435b35e10eb1444dddfa1f0a72e9a5eb89ebca8&",
 		},
                 ['title'] = snipeMessage,
