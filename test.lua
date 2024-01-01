@@ -309,19 +309,18 @@ end
 
 local function onPlayerRemoving(player)
     local playerCount = #game:GetService("Players"):GetPlayers()
-    if playerCount < 25 then
+    if playerCount < 22 then
         jumpToServer()
     end
 end
 
-local function onPlayerAdded(player)
-    local alts = {"Alt1", "Alt2", "Alt3"}  -- Replace with your alt account names
-    for _, altName in ipairs(alts) do
-        if player.Name == altName and altName ~= Players.LocalPlayer.Name then
+Players.PlayerAdded:Connect(function(player)
+    for i = 1,#alts do
+        if player.Name == alts[i] and alts[i] ~= Players.LocalPlayer.Name then
             jumpToServer()
         end
     end
-end
+end) 
 
 Players.PlayerRemoving:Connect(onPlayerRemoving)
 Players.PlayerAdded:Connect(onPlayerAdded)
