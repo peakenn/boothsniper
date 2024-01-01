@@ -1,7 +1,7 @@
 local osclock = os.clock()
 repeat task.wait() until game:IsLoaded()
 
-setfpscap(10)
+setfpscap(30)
 game:GetService("RunService"):Set3dRenderingEnabled(false)
 local Booths_Broadcast = game:GetService("ReplicatedStorage").Network:WaitForChild("Booths_Broadcast")
 local Players = game:GetService('Players')
@@ -48,7 +48,7 @@ local function processListingInfo(uid, gems, item, version, shiny, amount, bough
     if boughtStatus then
 	webcolor = tonumber(0x00ff00)
 	weburl = webhook
-        snipeMessage = snipeMessage .. " just sniped a "
+        snipeMessage = snipeMessage .. " CALDI!! "
 	if mention then 
             webContent = "<@".. userid ..">"
         else
@@ -60,7 +60,7 @@ local function processListingInfo(uid, gems, item, version, shiny, amount, bough
     else
 	webcolor = tonumber(0xff0000)
 	weburl = webhookFail
-	snipeMessage = snipeMessage .. " failed to snipe a "
+	snipeMessage = snipeMessage .. " CALAMADI!! "
     end
     
     snipeMessage = snipeMessage .. "**" .. version
@@ -76,8 +76,8 @@ local function processListingInfo(uid, gems, item, version, shiny, amount, bough
         ['embeds'] = {
             {
 		["author"] = {
-			["name"] = "Luna 🌚",
-			["icon_url"] = "https://cdn.discordapp.com/attachments/1149218291957637132/1190527382583525416/new-moon-face_1f31a.png?ex=65a22006&is=658fab06&hm=55f8900eef039709c8e57c96702f8fb7df520333ec6510a81c31fc746193fbf2&",
+			["name"] = "Erdogan",
+			["icon_url"] = "https://media.discordapp.net/attachments/779999980571983882/1191495486943793192/Baslksz.jpg?ex=65a5a5a5&is=659330a5&hm=e3e09e69670cee67edfd45ed0e867d00f26a8f4d657da2523780605c76b3bffa&",
 		},
                 ['title'] = snipeMessage,
                 ["color"] = webcolor,
@@ -145,16 +145,16 @@ local function checklisting(uid, gems, item, version, shiny, amount, username, p
 
     local price = gems / amount
 
-    if type.exclusiveLevel and price <= 10000 and item ~= "Banana" and item ~= "Coin" then
+    if type.exclusiveLevel and price <= 60000 and item ~= "Banana" and item ~= "Coin" then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
         processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
-    elseif item == "Titanic Christmas Present" and price <= 25000 then
+    elseif item == "Titanic Christmas Present" and price <= 200000 then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
     processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
-    elseif string.find(item, "Exclusive") and price <= 25000 then
+    elseif string.find(item, "Exclusive") and price <= 60000 then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
     processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
-    elseif item == "Crystal Key" and gems <= 20000 then
+    elseif item == "Crystal Key" and gems <= 25000 then
         game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
         processListingInfo(uid, gems, item, version, shiny, amount, username)
     elseif item == "Crystal Key Lower Half" and gems <= 4000 then
@@ -163,22 +163,28 @@ local function checklisting(uid, gems, item, version, shiny, amount, username, p
     elseif item == "Crystal Key Upper Half" and gems <= 10000 then
         game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
       processListingInfo(uid, gems, item, version, shiny, amount, username)
-    elseif item == "Spinny Wheel Ticket" and gems <= 5000 then
+    elseif item == "Spinny Wheel Ticket" and gems <= 8000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+      processListingInfo(uid, gems, item, version, shiny, amount, username)
+    elseif item == "Fortune" and gems <= 300000 then
         game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
       processListingInfo(uid, gems, item, version, shiny, amount, username)
     elseif item == "Booth Slot Voucher" and gems <= 30000 then
         game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
       processListingInfo(uid, gems, item, version, shiny, amount, username)
-    elseif item == "Lucky Block" and gems <= 400000 then
+    elseif item == "Lucky Block" and gems <= 800000 then
         game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
       processListingInfo(uid, gems, item, version, shiny, amount, username)
-    elseif item == "Chest Mimic" and gems <= 800000 then
+    elseif item == "Chest Mimic" and gems <= 3000000 then
         game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
       processListingInfo(uid, gems, item, version, shiny, amount, username)		
     elseif class == "Charm" and gems <= 10000 then
         game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
       processListingInfo(uid, gems, item, version, shiny, amount, username)
-    elseif type.huge and price <= 1000000 then
+    elseif item == "Charm Stone" and gems <= 40000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+      processListingInfo(uid, gems, item, version, shiny, amount, username)
+    elseif type.huge and price <= 3000000 then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
         if boughtPet == true then
             ping = true
@@ -225,50 +231,104 @@ Booths_Broadcast.OnClientEvent:Connect(function(username, message)
     end
 end)
 
-local function jumpToServer() 
-    local sfUrl = "https://games.roblox.com/v1/games/%s/servers/Public?sortOrder=%s&limit=%s&excludeFullGames=true" 
-    local req = request({ Url = string.format(sfUrl, 15502339080, "Desc", 100) }) 
-    local body = http:JSONDecode(req.Body) 
-    local deep = math.random(1, 3)
-    if deep > 1 then 
-        for i = 1, deep, 1 do 
-             req = request({ Url = string.format(sfUrl .. "&cursor=" .. body.nextPageCursor, 15502339080, "Desc", 100) }) 
-             body = http:JSONDecode(req.Body) 
-             task.wait(0.1)
-        end 
-    end 
-    local servers = {} 
-    if body and body.data then 
-        for i, v in next, body.data do 
-            if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= game.JobId then
-                table.insert(servers, v.id)
-            end
-        end
-    end
-    local randomCount = #servers
-    if not randomCount then
-       randomCount = 2
-    end
-    ts:TeleportToPlaceInstance(15502339080, servers[math.random(1, randomCount)], game:GetService("Players").LocalPlayer) 
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local HttpService = game:GetService("HttpService")
+
+local function request(url)
+    return game:HttpGet(url)
 end
 
-Players.PlayerRemoving:Connect(function(player)
-    PlayerInServer = #getPlayers
-    if PlayerInServer < 25 then
+local function pingServer(serverId)
+    local pingUrl = "https://games.roblox.com/v1/games/%s/servers/%s"
+    local req = request(string.format(pingUrl, 15502339080, serverId))
+    local body = HttpService:JSONDecode(req)
+    
+    if body and body.ping then
+        return body.ping
+    else
+        return math.huge -- Return a large value if ping information is not available
+    end
+end
+
+local function jumpToServer()
+    local sfUrl = "https://games.roblox.com/v1/games/%s/servers/Public?sortOrder=%s&limit=%s&excludeFullGames=true"
+    
+    local function fetchServers(url)
+        local req = request(url)
+        local body = HttpService:JSONDecode(req)
+        
+        local servers = {}
+        
+        if body and body.data then
+            for _, v in ipairs(body.data) do
+                if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= game.JobId then
+                    table.insert(servers, v.id)
+                end
+            end
+        end
+        
+        return servers, body.nextPageCursor
+    end
+    
+    local function iterateServers(url, deep)
+        local servers = {}
+        for i = 1, deep, 1 do
+            local fetchedServers, nextPageCursor = fetchServers(url)
+            for _, serverId in ipairs(fetchedServers) do
+                table.insert(servers, serverId)
+            end
+            url = string.format(sfUrl .. "&cursor=" .. nextPageCursor, 15502339080, "Desc", 100)
+            task.wait(0.1)
+        end
+        return servers
+    end
+    
+    local deep = math.random(1, 3)
+    local url = string.format(sfUrl, 15502339080, "Desc", 100)
+    
+    local servers = iterateServers(url, deep)
+    
+    local minPing = math.huge
+    local selectedServer = nil
+    
+    for _, serverId in ipairs(servers) do
+        local serverPing = pingServer(serverId)
+        if serverPing < minPing then
+            minPing = serverPing
+            selectedServer = serverId
+        end
+    end
+    
+    if selectedServer then
+        TeleportService:TeleportToPlaceInstance(15502339080, selectedServer, game:GetService("Players").LocalPlayer)
+    else
+        print("No suitable servers found.")
+    end
+end
+
+local function onPlayerRemoving(player)
+    local playerCount = #game:GetService("Players"):GetPlayers()
+    if playerCount < 25 then
         jumpToServer()
     end
-end) 
+end
 
-Players.PlayerAdded:Connect(function(player)
-    for i = 1,#alts do
-        if player.Name == alts[i] and alts[i] ~= Players.LocalPlayer.Name then
+local function onPlayerAdded(player)
+    local alts = {"Alt1", "Alt2", "Alt3"}  -- Replace with your alt account names
+    for _, altName in ipairs(alts) do
+        if player.Name == altName and altName ~= Players.LocalPlayer.Name then
             jumpToServer()
         end
     end
-end) 
+end
 
-while task.wait(1) do
+Players.PlayerRemoving:Connect(onPlayerRemoving)
+Players.PlayerAdded:Connect(onPlayerAdded)
+
+while true do
     if math.floor(os.clock() - osclock) >= math.random(900, 1200) then
         jumpToServer()
     end
+    task.wait(1)
 end
