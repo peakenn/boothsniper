@@ -105,8 +105,8 @@ local function processListingInfo(uid, gems, item, version, shiny, amount, bough
                     },
                 },
 		["footer"] = {
-                        ["icon_url"] = "https://cdn.discordapp.com/attachments/1149218291957637132/1190527382583525416/new-moon-face_1f31a.png?ex=65a22006&is=658fab06&hm=55f8900eef039709c8e57c96702f8fb7df520333ec6510a81c31fc746193fbf2&", -- optional
-                        ["text"] = "Heavily Modified by Root"
+                        ["icon_url"] = "https://media.discordapp.net/attachments/779999980571983882/1191495486943793192/Baslksz.jpg?ex=65a5a5a5&is=659330a5&hm=e3e09e69670cee67edfd45ed0e867d00f26a8f4d657da2523780605c76b3bffa&", -- optional
+                        ["text"] = "VERGI!"
 		}
             },
         }
