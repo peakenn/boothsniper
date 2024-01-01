@@ -174,11 +174,8 @@ local function checklisting(uid, gems, item, version, shiny, amount, username, p
       processListingInfo(uid, gems, item, version, shiny, amount, username)
     elseif item == "Lucky Block" and gems <= 800000 then
         game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
-      processListingInfo(uid, gems, item, version, shiny, amount, username)
-    elseif item == "Chest Mimic" and gems <= 3000000 then
-        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
       processListingInfo(uid, gems, item, version, shiny, amount, username)		
-    elseif class == "Charm" and gems <= 10000 then
+    elseif class == "Charm" and gems <= 4000 then
         game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
       processListingInfo(uid, gems, item, version, shiny, amount, username)
     elseif item == "Charm Stone" and gems <= 40000 then
