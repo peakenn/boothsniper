@@ -48,7 +48,7 @@ local function processListingInfo(uid, gems, item, version, shiny, amount, bough
     if boughtStatus then
 	webcolor = tonumber(0x00ff00)
 	weburl = webhook
-        snipeMessage = snipeMessage .. " CALDI!! "
+        snipeMessage = snipeMessage .. " just sniped a "
 	if mention then 
             webContent = "<@".. userid ..">"
         else
@@ -60,7 +60,7 @@ local function processListingInfo(uid, gems, item, version, shiny, amount, bough
     else
 	webcolor = tonumber(0xff0000)
 	weburl = webhookFail
-	snipeMessage = snipeMessage .. " CALAMADI :( "
+	snipeMessage = snipeMessage .. " failed to snipe a "
     end
     
     snipeMessage = snipeMessage .. "**" .. version
@@ -145,34 +145,56 @@ local function checklisting(uid, gems, item, version, shiny, amount, username, p
 
     local price = gems / amount
 
-    if type.exclusiveLevel and price <= 60000 and item ~= "Banana" and item ~= "Coin" then
+    if type.exclusiveLevel and price <= 10000 and item ~= "Banana" and item ~= "Coin" then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
         processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
-    elseif item == "Titanic Christmas Present" and price <= 300000 then
+    elseif item == "Titanic Christmas Present" and price <= 25000 then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
-	processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
     elseif string.find(item, "Exclusive") and price <= 25000 then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
-	processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
-    elseif type.huge and price <= 3000000 then
+    processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
+    elseif item == "Crystal Key" and gems <= 20000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+        processListingInfo(uid, gems, item, version, shiny, amount, username)
+    elseif item == "Crystal Key Lower Half" and gems <= 4000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+      processListingInfo(uid, gems, item, version, shiny, amount, username)
+    elseif item == "Crystal Key Upper Half" and gems <= 10000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+      processListingInfo(uid, gems, item, version, shiny, amount, username)
+    elseif item == "Spinny Wheel Ticket" and gems <= 5000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+      processListingInfo(uid, gems, item, version, shiny, amount, username)
+    elseif item == "Booth Slot Voucher" and gems <= 30000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+      processListingInfo(uid, gems, item, version, shiny, amount, username)
+    elseif item == "Lucky Block" and gems <= 400000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+      processListingInfo(uid, gems, item, version, shiny, amount, username)
+    elseif item == "Chest Mimic" and gems <= 800000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+      processListingInfo(uid, gems, item, version, shiny, amount, username)		
+    elseif class == "Charm" and gems <= 10000 then
+        game:GetService("ReplicatedStorage").Network.Booths_RequestPurchase:InvokeServer(playerid, uid)
+      processListingInfo(uid, gems, item, version, shiny, amount, username)
+    elseif type.huge and price <= 1000000 then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
         if boughtPet == true then
             ping = true
-	end
+    end
         processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)  
     elseif type.titanic and price <= 10000000 then
         local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
         if boughtPet == true then
-	    ping = true
-	end
+        ping = true
+    end
         processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
     elseif gems == 1 and snipeNormalPets == true then
-	snipeNormal = true
-	local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+    local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
         processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)  
     end
 end
-
 Booths_Broadcast.OnClientEvent:Connect(function(username, message)
     local playerIDSuccess, playerError = pcall(function()
 	playerID = message['PlayerID']
@@ -232,7 +254,7 @@ end
 
 Players.PlayerRemoving:Connect(function(player)
     PlayerInServer = #getPlayers
-    if PlayerInServer < 22 then
+    if PlayerInServer < 25 then
         jumpToServer()
     end
 end) 
