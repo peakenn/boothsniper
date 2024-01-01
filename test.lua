@@ -232,6 +232,9 @@ local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
 local HttpService = game:GetService("HttpService")
 
+-- Replace "Alt1", "Alt2", "Alt3" with your actual alt account names
+local alts = {"Alt1", "Alt2", "Alt3"}
+
 local function request(url)
     return game:HttpGet(url)
 end
@@ -249,6 +252,8 @@ local function pingServer(serverId)
 end
 
 local function jumpToServer()
+    print("Searching for servers...")
+    
     local sfUrl = "https://games.roblox.com/v1/games/%s/servers/Public?sortOrder=%s&limit=%s&excludeFullGames=true"
     
     local function fetchServers(url)
@@ -298,6 +303,7 @@ local function jumpToServer()
     end
     
     if selectedServer then
+        print("Teleporting to server:", selectedServer)
         TeleportService:TeleportToPlaceInstance(15502339080, selectedServer, game:GetService("Players").LocalPlayer)
     else
         print("No suitable servers found.")
@@ -306,25 +312,25 @@ end
 
 local function onPlayerRemoving(player)
     local playerCount = #game:GetService("Players"):GetPlayers()
+    print("Player count:", playerCount)
     if playerCount < 22 then
         jumpToServer()
     end
 end
 
-Players.PlayerAdded:Connect(function(player)
-    for i = 1,#alts do
+local function onPlayerAdded(player)
+    for i = 1, #alts do
         if player.Name == alts[i] and alts[i] ~= Players.LocalPlayer.Name then
             jumpToServer()
         end
     end
-end) 
+end
 
 Players.PlayerRemoving:Connect(onPlayerRemoving)
 Players.PlayerAdded:Connect(onPlayerAdded)
 
 while true do
-    if math.floor(os.clock() - osclock) >= math.random(900, 1200) then
-        jumpToServer()
-    end
-    task.wait(1)
+    print("Checking for server hopping...")
+    jumpToServer()
+    task.wait(900 + math.random(300))  -- Wait for a random interval between 900 and 1200 seconds
 end
